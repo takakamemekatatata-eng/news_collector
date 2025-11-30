@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>RSS フィード一覧</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        /* 絞り込みフォーム */
+        .filter-box {
+            margin-bottom: 20px;
+        }
+
+        .filter-box input {
+            padding: 6px 12px;
+            width: 240px;
+            margin-right: 8px;
+        }
+
+        .filter-box button {
+            padding: 6px 12px;
+        }
+
+        /* Feed カード */
+        .feed-card {
+            padding: 12px 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: #fafafa;
+        }
+
+        .feed-info {
+            flex-grow: 1;
+        }
+
+        .feed-site {
+            font-size: 13px;
+            color: #555;
+        }
+
+        .feed-name {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .feed-url a {
+            color: #0066cc;
+            font-size: 13px;
+            word-break: break-all;
+        }
+
+        /* favicon */
+        .favicon {
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+        }
+
+        .no-favicon {
+            width: 28px;
+            height: 28px;
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        /* ボタン */
+        .action-btn {
+            padding: 6px 12px;
+            background: #007bff;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>RSS フィード一覧</h1>
+
+    <!-- 絞り込みフォーム -->
+    <div class="filter-box">
+        <form method="get" action="/feeds">
+            <input type="text" name="q" placeholder="フィード名・サイトで検索" value="{{ q }}">
+            <button type="submit">検索</button>
+        </form>
+    </div>
+
+    <!-- フィード一覧カード -->
+    {% for f in feeds %}
+    <div class="feed-card">
+
+        {% if f.favicon %}
+            <img src="{{ f.favicon }}" class="favicon">
+        {% else %}
+            <div class="no-favicon"></div>
+        {% endif %}
+
+        <div class="feed-info">
+            <div class="feed-site">{{ f.site }}</div>
+            <div class="feed-name">{{ f.name }}</div>
+            <div class="feed-url">
+                <a href="{{ f.url }}" target="_blank">{{ f.url }}</a>
+            </div>
+        </div>
+
+        <!-- 記事一覧ページへ飛ぶなどのアクション -->
+        <a href="/?feed={{ f.id }}" class="action-btn">記事を見る</a>
+    </div>
+    {% endfor %}
+
+</body>
+</html>

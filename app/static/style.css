@@ -1,0 +1,167 @@
+/* ============================================================
+   共通部分
+============================================================ */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px 40px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+
+/* ============================================================
+   ★★ 記事一覧ページ専用（index.html）
+   .article-page スコープに閉じ込める！！
+============================================================ */
+.article-page .article-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    table-layout: fixed;
+    overflow: hidden;
+}
+
+.article-page .article-table thead th {
+    background: #f0f0f0;
+    padding: 10px;
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+    text-align: left;
+}
+
+.article-page .article-table td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+.article-page .article-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.article-page .clickable-row:hover {
+    background-color: #eef7ff;
+}
+
+.article-page .clickable-row.read {
+    background-color: #f0f0f0 !important;
+    opacity: 1;
+    color: #999;
+}
+.article-page .toolbar {
+    display: flex;
+    flex-wrap: wrap;          /* 画面狭いときは折り返し */
+    gap: 8px 12px;            /* 横・縦のすき間 */
+    align-items: flex-end;    /* ボタンの下端を揃える */
+    margin-bottom: 16px;
+}
+
+/* 列幅 */
+.article-page .title-col,
+.article-page .title-cell { width: 48%; }
+
+.article-page .desc-col,
+.article-page .desc-cell { width: 40%; }
+
+.article-page .date-col,
+.article-page .date-cell { width: 12%; white-space: nowrap; }
+
+/* タイトル */
+.article-page .title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.article-page .title-text {
+    font-weight: bold;
+    color: #0056b3;
+    flex: 1;
+}
+
+.article-page .feed-label {
+    font-size: 0.78rem;
+    color: #666;
+    white-space: nowrap;
+}
+
+/* お気に入り */
+.article-page .favorite-form {
+    display: inline-block;
+}
+
+.article-page .favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #f1b400;
+}
+.article-page .favorite-btn:hover {
+    transform: scale(1.2);
+}
+
+/* 説明 */
+.article-page .desc-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.article-page .hamburger {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 3000;
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.article-page .sidebar {
+    height: 100%;
+    width: 260px;
+    background: #f7f7f7;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 80px 20px 20px;
+    border-right: 1px solid #ccc;
+    transform: translateX(-260px);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    z-index: 2000;
+}
+
+.article-page .sidebar.open {
+    transform: translateX(0);
+}
+
+.article-page .apply-btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
